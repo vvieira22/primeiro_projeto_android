@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.FormularioProdutoActivity">
+
+
+    <EditText android:id="@+id/campoNome"
+
+        android:hint="Nome"
+        android:layout_margin="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText android:id="@+id/campoDescricao"
+        android:hint="Descrição"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/campoNome"
+        app:layout_constraintStart_toStartOf="@id/campoNome"
+        app:layout_constraintTop_toBottomOf="@id/campoNome" />
+
+    <EditText android:id="@+id/campoValor"
+        android:inputType="numberDecimal"
+        android:hint="Valor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/campoDescricao"
+        app:layout_constraintStart_toStartOf="@id/campoDescricao"
+        app:layout_constraintTop_toBottomOf="@id/campoDescricao" />
+
+    <Button
+        android:id="@+id/botaoEnviar"
+        android:text="Salvar"
+        android:layout_margin="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

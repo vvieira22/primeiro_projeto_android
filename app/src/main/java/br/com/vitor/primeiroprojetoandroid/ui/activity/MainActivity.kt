@@ -2,6 +2,7 @@ package br.com.vitor.primeiroprojetoandroid.ui.activity
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.vitor.primeiroprojetoandroid.R
@@ -9,7 +10,7 @@ import br.com.vitor.primeiroprojetoandroid.ui.recyclerview.adapter.ListaProdutos
 import br.com.vitor.primeiroprojetoandroid.ui.recyclerview.adapter.model.Produto
 import java.math.BigDecimal
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
