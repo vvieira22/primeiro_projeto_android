@@ -1,13 +1,14 @@
 package br.com.vitor.primeiroprojetoandroid.ui.activity
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import br.com.vitor.primeiroprojetoandroid.R
+import br.com.vitor.primeiroprojetoandroid.ui.recyclerview.adapter.model.Produto
+import java.math.BigDecimal
 
 class FormularioProdutoActivity : AppCompatActivity() {
     @SuppressLint("WrongViewCast")
@@ -15,13 +16,44 @@ class FormularioProdutoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_formulario_produto)
 
-
         val botaoEnviar = findViewById<Button>(R.id.botaoEnviar)
 
         //lambda, mo paz
         botaoEnviar.setOnClickListener {
-            val campoNome = findViewById<EditText>(R.id.campoNome)
-            Log.d("cadastro", campoNome.text.toString())
+
+            try {
+                val campoNome  = findViewById<EditText>(R.id.campoNome).text.toString()
+                val campoDescricao = findViewById<EditText>(R.id.campoDescricao).text.toString()
+                val campoValor = findViewById<EditText>(R.id.campoValor).text.toString()
+                var mensagemErro = ""
+
+                if(campoNome.isNullOrEmpty()) {
+                    mensagemErro = mensagemErro + "\nerro no campo Nome.\n"
+                    Log.d("cadastroProduto", campoNome)
+                }
+                if(campoDescricao.isNullOrEmpty()) {
+                    mensagemErro = mensagemErro + "erro no campo Descricao.\n"
+                    Log.d("cadastroProduto", campoDescricao)
+                }
+                if(campoValor.isNullOrEmpty()) {
+                    mensagemErro = mensagemErro + "erro no campo Valor.\n"
+                    Log.d("cadastroProduto", campoValor)
+                }
+                if(!mensagemErro.isNullOrEmpty())
+                    throw Exception(mensagemErro)
+
+                val novoProduto = Produto(
+                    campoNome,
+                    campoDescricao,
+                    BigDecimal(campoValor)
+                )
+                Log.d("cadastroProduto", "$novoProduto")
+            }
+            catch (ex: Exception)
+            {
+                Log.e("cadastroProduto", ex.toString())
+            }
+
         }
 
         //modo tryhard

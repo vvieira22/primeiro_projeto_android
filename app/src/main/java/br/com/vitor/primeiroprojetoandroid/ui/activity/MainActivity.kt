@@ -28,19 +28,19 @@ class MainActivity : AppCompatActivity() {
                 Produto(
                     nome = "teste",
                     descricao = "descricao",
-                    preco = BigDecimal("19.99")
+                    valor = BigDecimal("19.99")
                 ), Produto(
                     nome = "teste2",
                     descricao = "descricao2",
-                    preco = BigDecimal("19.992")
+                    valor = BigDecimal("19.992")
                 ), Produto(
                     nome = "teste3",
                     descricao = "descricao3",
-                    preco = BigDecimal("1")
+                    valor = BigDecimal("1")
                 ), Produto(
                     nome = "teste4",
                     descricao = "descricao4",
-                    preco = BigDecimal("2")
+                    valor = BigDecimal("2")
                 )
             )
         )

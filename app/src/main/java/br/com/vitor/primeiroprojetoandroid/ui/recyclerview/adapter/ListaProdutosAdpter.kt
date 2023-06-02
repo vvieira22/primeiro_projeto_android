@@ -27,7 +27,7 @@ class ListaProdutosAdpter(
             descricao.text = produto.descricao
 
             val valor = itemView.findViewById<TextView>(R.id.preco)
-            valor.text = produto.preco.toPlainString()
+            valor.text = produto.valor.toPlainString()
 
         }
     }
