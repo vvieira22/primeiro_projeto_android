@@ -1,4 +1,4 @@
-package br.com.vitor.primeiroprojetoandroid.ui.activity
+package br.com.vitor.primeiroprojetoandroid.main.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,7 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import br.com.vitor.primeiroprojetoandroid.R
-import br.com.vitor.primeiroprojetoandroid.ui.recyclerview.adapter.model.Produto
+import br.com.vitor.primeiroprojetoandroid.main.dao.ProdutosDao
+import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
 import java.math.BigDecimal
 
 class FormularioProdutoActivity : AppCompatActivity() {
@@ -48,12 +49,17 @@ class FormularioProdutoActivity : AppCompatActivity() {
                     BigDecimal(campoValor)
                 )
                 Log.d("cadastroProduto", "$novoProduto")
+
+                val produtosDao = ProdutosDao()
+                produtosDao.adicionarProduto(novoProduto)
+                Log.d("cadastroProduto", "${produtosDao.buscarProdutos()}")
             }
             catch (ex: Exception)
             {
                 Log.e("cadastroProduto", ex.toString())
             }
 
+            finish() //mata activity e volta pra pilha anterior
         }
 
         //modo tryhard

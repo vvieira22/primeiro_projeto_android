@@ -1,4 +1,4 @@
-package br.com.vitor.primeiroprojetoandroid.ui.recyclerview.adapter
+package br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.vitor.primeiroprojetoandroid.R
-import br.com.vitor.primeiroprojetoandroid.ui.recyclerview.adapter.model.Produto
-import org.w3c.dom.Text
+import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
 
 class ListaProdutosAdpter(
     private val context: Context,
