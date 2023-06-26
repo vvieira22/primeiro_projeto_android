@@ -7,31 +7,39 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.vitor.primeiroprojetoandroid.R
 import br.com.vitor.primeiroprojetoandroid.main.dao.ProdutosDao
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.ListaProdutosAdpter
-import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.math.BigDecimal
 
-class MainActivity : AppCompatActivity() {
+class listaProdutosActivity : AppCompatActivity(R.layout.activity_lista_produtos) {
+
+    private val dao = ProdutosDao()
+    private val adapter = ListaProdutosAdpter(context = this, produtos = dao.buscarProdutos())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        configuraRecyclerView()
+        configuraFloatingActionButton()
     }
 
     override fun onResume() {
         super.onResume()
+        adapter.atualiza(dao.buscarProdutos())
+    }
 
-        setContentView(R.layout.activity_main)
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewlista)
-        val dao = ProdutosDao()
-
-        recyclerView.adapter = ListaProdutosAdpter(
-            context = this, produtos = dao.buscarProdutos())
-
+    private fun configuraFloatingActionButton() {
         //Chamar outra view baseada no botão + em idle
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
-        fab.setOnClickListener{
-            val intent = Intent(this, FormularioProdutoActivity::class.java)
-            startActivity(intent)
+        fab.setOnClickListener {
+            vaiParaFormularioDeProduto()
         }
+    }
+
+    private fun vaiParaFormularioDeProduto() {
+        val intent = Intent(this, FormularioProdutoActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun configuraRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewlista)
+        recyclerView.adapter = adapter
     }
 }

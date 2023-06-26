@@ -11,9 +11,11 @@ import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produ
 
 class ListaProdutosAdpter(
     private val context: Context,
-    private val produtos : List<Produto>
+    produtos: List<Produto>
 
 ) : RecyclerView.Adapter<ListaProdutosAdpter.ViewHolder>() {
+
+    private val produtos = produtos.toMutableList()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(produto: Produto) {
@@ -48,5 +50,12 @@ class ListaProdutosAdpter(
 
     //funcao que faz o return, forma reduzida
     override fun getItemCount(): Int = produtos.size
+
+
+    fun atualiza(produtos: List<Produto>) {
+        this.produtos.clear()
+        this.produtos.addAll(produtos)
+        notifyDataSetChanged()
+    }
 
 }
