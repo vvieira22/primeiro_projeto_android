@@ -7,40 +7,35 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.vitor.primeiroprojetoandroid.R
+import br.com.vitor.primeiroprojetoandroid.databinding.ProdutoItemBinding
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
 
 class ListaProdutosAdpter(
     private val context: Context,
     produtos: List<Produto>
-
 ) : RecyclerView.Adapter<ListaProdutosAdpter.ViewHolder>() {
 
     private val produtos = produtos.toMutableList()
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(binding: ProdutoItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        private val nome = binding.nome
+        private val descricao = binding.descricao
+        private val valor = binding.preco
+
         fun vincula(produto: Produto) {
-
-//            itemView é o proprio valor de view ali em baixo declarado.
-            val nome = itemView.findViewById<TextView>(R.id.nome)
             nome.text = produto.nome
-
-            val descricao = itemView.findViewById<TextView>(R.id.descricao)
             descricao.text = produto.descricao
-
-            val valor = itemView.findViewById<TextView>(R.id.preco)
             valor.text = produto.valor.toPlainString()
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //view exclusiva a partir de um layout.
         // = inflar view.
-        val inflater = LayoutInflater.from(context)
+        val binding = ProdutoItemBinding.inflate(LayoutInflater.from(context), parent, false)
 
-        //layout que voce quer no caso = produto_item
-        val view = inflater.inflate(R.layout.produto_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

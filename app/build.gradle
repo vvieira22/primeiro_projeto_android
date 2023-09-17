@@ -7,6 +7,14 @@ android {
     namespace 'br.com.vitor.primeiroprojetoandroid'
     compileSdk 32
 
+    viewBinding {
+        enabled = true
+    }
+    buildFeatures{
+        viewBinding{
+            enabled=true
+        }
+    }
     defaultConfig {
         applicationId "br.com.vitor.primeiroprojetoandroid"
         minSdk 23
@@ -30,6 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 dependencies {

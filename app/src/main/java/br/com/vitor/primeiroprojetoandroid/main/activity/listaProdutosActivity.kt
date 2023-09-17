@@ -8,16 +8,28 @@ import br.com.vitor.primeiroprojetoandroid.R
 import br.com.vitor.primeiroprojetoandroid.main.dao.ProdutosDao
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.ListaProdutosAdpter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import br.com.vitor.primeiroprojetoandroid.databinding.ActivityListaProdutosBinding
 
-class listaProdutosActivity : AppCompatActivity(R.layout.activity_lista_produtos) {
+class listaProdutosActivity : AppCompatActivity() {
 
     private val dao = ProdutosDao()
-    private val adapter = ListaProdutosAdpter(context = this, produtos = dao.buscarProdutos())
+//    private val adapter = ListaProdutosAdpter(context = this, produtos = dao.buscarProdutos())
+
+    private val adapter by lazy {
+        ListaProdutosAdpter(this, produtos = dao.buscarProdutos())
+    }
+
+    private val binding by lazy {
+        ActivityListaProdutosBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        configuraRecyclerView()
+        val recyclerView = binding.recyclerViewlista
+        recyclerView.adapter = adapter
+
         configuraFloatingActionButton()
+        setContentView(binding.root)
     }
 
     override fun onResume() {
@@ -27,15 +39,13 @@ class listaProdutosActivity : AppCompatActivity(R.layout.activity_lista_produtos
 
     private fun configuraFloatingActionButton() {
         //Chamar outra view baseada no botão + em idle
-        val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
-        fab.setOnClickListener {
-            vaiParaFormularioDeProduto()
+        val fab = binding.floatingActionButton
+        fab.setOnClickListener{
+            Intent(this,FormularioProdutoActivity::class.java)
+                .run{
+                    startActivity(this)
+                }
         }
-    }
-
-    private fun vaiParaFormularioDeProduto() {
-        val intent = Intent(this, FormularioProdutoActivity::class.java)
-        startActivity(intent)
     }
 
     private fun configuraRecyclerView() {
