@@ -1,6 +1,7 @@
 package br.com.vitor.primeiroprojetoandroid.main.dao
 
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
+import java.math.BigDecimal
 
 class ProdutosDao {
 
@@ -15,7 +16,7 @@ class ProdutosDao {
     }
 
     companion object {
-        private val produtos = mutableListOf<Produto>()
+        private val produtos = mutableListOf<Produto>(Produto("Teste","descricao", BigDecimal("2.99")))
     }
 
 }

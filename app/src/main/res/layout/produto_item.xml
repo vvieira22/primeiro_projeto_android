@@ -47,8 +47,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/nome"
         tools:layout_editor_absoluteY="150dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
-        android:src="@android:color/holo_purple"
+        app:srcCompat="@drawable/frutas"
         android:scaleType="centerCrop"/>
 
+<!--    Use this site do make img responsible.https://nsimage.brosteins.com/Home/UploadImage-->
 </androidx.constraintlayout.widget.ConstraintLayout>
