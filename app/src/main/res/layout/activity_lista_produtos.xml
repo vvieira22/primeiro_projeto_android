@@ -18,7 +18,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,10 @@
         app:srcCompat="@drawable/ic_cadastrar_produto"
         android:focusable="true"
         app:backgroundTint="@color/white"
+        android:text="@string/adicionar_produto"
+        app:icon="@drawable/ic_cadastrar_produto"
         />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
