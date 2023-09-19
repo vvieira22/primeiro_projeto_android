@@ -9,46 +9,58 @@
         android:id="@+id/nome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        tools:text="Salada De Frutas"
+        android:fontFamily="@font/montserrat_bold"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/lorem"
+        android:maxLines="1"
+        android:ellipsize="end"/>
 
     <TextView
         android:id="@+id/descricao"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:textSize="15sp"
+        android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toEndOf="@id/nome"
         app:layout_constraintStart_toStartOf="@id/nome"
         app:layout_constraintTop_toBottomOf="@id/nome"
-        tools:text="banana, maça, pêra" />
+        tools:text="@tools:sample/lorem"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
 
     <TextView
         android:id="@+id/preco"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="9,99 R$"
-        android:textSize="15sp"
+        tools:text="R$ 1999.99,99"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"
+        android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toEndOf="@id/nome"
         app:layout_constraintStart_toStartOf="@id/nome"
-        app:layout_constraintTop_toBottomOf="@id/descricao" />
+        app:layout_constraintTop_toBottomOf="@id/descricao"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/nome"
-        tools:layout_editor_absoluteY="150dp"
-        app:srcCompat="@drawable/frutas"
-        android:scaleType="centerCrop"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/frutas" />
 
 <!--    Use this site do make img responsible.https://nsimage.brosteins.com/Home/UploadImage-->
 </androidx.constraintlayout.widget.ConstraintLayout>
