@@ -12,6 +12,8 @@ import br.com.vitor.primeiroprojetoandroid.R
 import br.com.vitor.primeiroprojetoandroid.databinding.ActivityFormularioProdutoBinding
 import br.com.vitor.primeiroprojetoandroid.main.dao.ProdutosDao
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import java.math.BigDecimal
 
 class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario_produto) {
@@ -50,9 +52,9 @@ class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario
     }
 
     private fun criaProduto(): Produto {
-        val campoNome = findViewById<EditText>(R.id.campoNome).text.toString()
-        val campoDescricao = findViewById<EditText>(R.id.campoDescricao).text.toString()
-        val campoValor = findViewById<EditText>(R.id.campoValor).text.toString()
+        val campoNome = findViewById<EditText>(R.id.activity_forumlario_produto_nome).text.toString()
+        val campoDescricao = findViewById<EditText>(R.id.activity_forumlario_produto_descricao).text.toString()
+        val campoValor = findViewById<EditText>(R.id.activity_forumlario_produto_valor).text.toString()
         var mensagemErro = ""
 
         if (campoNome.isNullOrEmpty()) {
