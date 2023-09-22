@@ -18,6 +18,7 @@
         tools:layout_editor_absoluteX="1dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:inputType="text"
             android:id="@+id/activity_forumlario_produto_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
         tools:layout_editor_absoluteX="1dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:inputType="text"
             android:id="@+id/activity_forumlario_produto_descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +59,8 @@
             android:id="@+id/activity_forumlario_produto_valor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Valor" />
+            android:hint="Valor"
+            android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
@@ -80,6 +83,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/formulario_produto_text_input_layout_valor"/>
+        app:layout_constraintTop_toBottomOf="@id/formulario_produto_text_input_layout_valor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

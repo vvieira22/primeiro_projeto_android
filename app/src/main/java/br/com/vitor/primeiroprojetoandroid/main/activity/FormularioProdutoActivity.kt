@@ -1,27 +1,37 @@
 package br.com.vitor.primeiroprojetoandroid.main.activity
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.vitor.primeiroprojetoandroid.R
 import br.com.vitor.primeiroprojetoandroid.databinding.ActivityFormularioProdutoBinding
 import br.com.vitor.primeiroprojetoandroid.main.dao.ProdutosDao
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import java.math.BigDecimal
 
-class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario_produto) {
+class FormularioProdutoActivity : AppCompatActivity() {
+
+    private val binding by lazy {
+        ActivityFormularioProdutoBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(binding.root)
         configuraBotaoSalvar()
+
+        binding.activityProdutoFormularioImagem.setOnClickListener{
+            AlertDialog.Builder(this)
+                .setView(R.layout.formulario_imagem)
+                .setPositiveButton("Adicionar"){_, _ ->
+                }
+                .setNegativeButton("Cancelar"){_, _ ->
+                }
+                .show()
+        }
     }
 
     private fun configuraBotaoSalvar() {
@@ -42,13 +52,6 @@ class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario
 
             finish() //mata activity e volta pra pilha anterior
         }
-        //modo tryhard
-//        botaoEnviar.setOnClickListener(object : View.OnClickListener {
-//            override fun onClick(p0: View?) {
-//                val campoNome = findViewById<EditText>(R.id.campoNome)
-//                Log.d("cadastro", campoNome.text.toString())
-//            }
-//        })
     }
 
     private fun criaProduto(): Produto {
@@ -78,6 +81,4 @@ class FormularioProdutoActivity : AppCompatActivity(R.layout.activity_formulario
             BigDecimal(campoValor)
         )
     }
-
-
 }
