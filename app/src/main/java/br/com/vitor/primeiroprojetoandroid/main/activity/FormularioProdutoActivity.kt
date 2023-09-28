@@ -1,5 +1,6 @@
 package br.com.vitor.primeiroprojetoandroid.main.activity
 
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -8,8 +9,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.vitor.primeiroprojetoandroid.R
 import br.com.vitor.primeiroprojetoandroid.databinding.ActivityFormularioProdutoBinding
+import br.com.vitor.primeiroprojetoandroid.databinding.FormularioImagemBinding
 import br.com.vitor.primeiroprojetoandroid.main.dao.ProdutosDao
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
+import coil.Coil
+import coil.load
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 import java.math.BigDecimal
 
 class FormularioProdutoActivity : AppCompatActivity() {
@@ -23,17 +29,23 @@ class FormularioProdutoActivity : AppCompatActivity() {
         setContentView(binding.root)
         configuraBotaoSalvar()
 
-        binding.activityProdutoFormularioImagem.setOnClickListener{
+        binding.activityProdutoFormularioImagem.setOnClickListener {
+            val bindingFormularioImagem = FormularioImagemBinding.inflate(layoutInflater)
+            bindingFormularioImagem.botaoCarregar.setOnClickListener {
+                val url = bindingFormularioImagem.formularioImagemUrl.text.toString()
+                bindingFormularioImagem.formularioImageView.load(url)
+            }
             AlertDialog.Builder(this)
-                .setView(R.layout.formulario_imagem)
-                .setPositiveButton("Adicionar"){_, _ ->
+                .setView(bindingFormularioImagem.root)
+                .setPositiveButton("Adicionar") { _, _ ->
+                    val url = bindingFormularioImagem.formularioImagemUrl.text.toString()
+                    binding.activityProdutoFormularioImagem.load(url)
                 }
-                .setNegativeButton("Cancelar"){_, _ ->
+                .setNegativeButton("Cancelar") { _, _ ->
                 }
                 .show()
         }
     }
-
     private fun configuraBotaoSalvar() {
         val botaoEnviar = findViewById<Button>(R.id.botaoEnviar)
 
