@@ -1,6 +1,7 @@
 package br.com.vitor.primeiroprojetoandroid.main.activity
 
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -13,6 +14,9 @@ import br.com.vitor.primeiroprojetoandroid.databinding.FormularioImagemBinding
 import br.com.vitor.primeiroprojetoandroid.main.dao.ProdutosDao
 import br.com.vitor.primeiroprojetoandroid.main.recyclerview.adapter.model.Produto
 import coil.Coil
+import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.load
 import coil.request.ImageRequest
 import coil.request.SuccessResult
@@ -23,6 +27,8 @@ class FormularioProdutoActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityFormularioProdutoBinding.inflate(layoutInflater)
     }
+    private var url: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +38,25 @@ class FormularioProdutoActivity : AppCompatActivity() {
         binding.activityProdutoFormularioImagem.setOnClickListener {
             val bindingFormularioImagem = FormularioImagemBinding.inflate(layoutInflater)
             bindingFormularioImagem.botaoCarregar.setOnClickListener {
-                val url = bindingFormularioImagem.formularioImagemUrl.text.toString()
+                url = bindingFormularioImagem.formularioImagemUrl.text.toString()
                 bindingFormularioImagem.formularioImageView.load(url)
             }
+
+            val imageLoader = ImageLoader.Builder(this)
+                .components {
+                    if (SDK_INT >= 28) {
+                        add(ImageDecoderDecoder.Factory())
+                    } else {
+                        add(GifDecoder.Factory())
+                    }
+                }
+                .build()
+
             AlertDialog.Builder(this)
                 .setView(bindingFormularioImagem.root)
                 .setPositiveButton("Adicionar") { _, _ ->
                     val url = bindingFormularioImagem.formularioImagemUrl.text.toString()
-                    binding.activityProdutoFormularioImagem.load(url)
+                    binding.activityProdutoFormularioImagem.load(url,imageLoader)
                 }
                 .setNegativeButton("Cancelar") { _, _ ->
                 }
@@ -90,7 +107,8 @@ class FormularioProdutoActivity : AppCompatActivity() {
         return Produto(
             campoNome,
             campoDescricao,
-            BigDecimal(campoValor)
+            BigDecimal(campoValor),
+            imagem = url
         )
     }
 }
